@@ -4,6 +4,7 @@ import { BasePage } from "./BasePage";
 import { HomePage } from "../HomePage";
 import { ContactUsPage } from "../ContactUsPage";
 import { LoginPage } from "../LoginPage";
+import { HeaderComponent } from "../components/HeaderComponent";
 
 export class PageManager {
   get page(): Page {
@@ -22,5 +23,10 @@ export class PageManager {
 
   createLoginPage(): LoginPage {
     return new LoginPage();
+  }
+
+  //components
+  createHeaderComponent(): HeaderComponent {
+    return new HeaderComponent();
   }
 }

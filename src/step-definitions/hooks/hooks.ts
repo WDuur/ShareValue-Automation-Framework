@@ -79,6 +79,8 @@ Before(async function () {
     this.homePage = this.pageManager.createHomePage();
     this.contactUsPage = this.pageManager.createContactUsPage();
     this.loginPage = this.pageManager.createLoginPage();
+    //components
+    this.headerComponent = this.pageManager.createHeaderComponent();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }

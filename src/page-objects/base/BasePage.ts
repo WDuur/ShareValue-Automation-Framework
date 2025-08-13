@@ -18,10 +18,15 @@ export class BasePage {
 
   public async navigate(url: string): Promise<void> {
     await this.page.goto(url);
+
+    //await this.page.pause();
   }
 
   public async waitAndClickByRole(role: string, name: string): Promise<void> {
-    const element = await this.page.getByRole(role as any, { name: name });
+    const element = await this.page.getByRole(role as any, {
+      name: name,
+      exact: true,
+    });
     await element.click();
   }
 

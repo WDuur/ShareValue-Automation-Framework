@@ -4,6 +4,7 @@ import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
 import { LoginPage } from "./../../page-objects/LoginPage";
+import { HeaderComponent } from "../../page-objects/components/HeaderComponent";
 
 export class CucumberWorld extends World {
   public pageManager: PageManager;
@@ -11,6 +12,8 @@ export class CucumberWorld extends World {
   public homePage: HomePage;
   public contactUsPage: ContactUsPage;
   public loginPage: LoginPage;
+  // components
+  public headerComponent: HeaderComponent;
 
   // base URL
   private url?: string;
@@ -29,6 +32,8 @@ export class CucumberWorld extends World {
     this.homePage = this.pageManager.createHomePage();
     this.contactUsPage = this.pageManager.createContactUsPage();
     this.loginPage = this.pageManager.createLoginPage();
+    //components
+    this.headerComponent = this.pageManager.createHeaderComponent();
   }
   //setters for url, first name and last name
   setUrl(url: string) {
