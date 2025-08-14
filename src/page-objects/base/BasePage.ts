@@ -15,7 +15,10 @@ export class BasePage {
   get page() {
     return pageFixture.page;
   }
-
+  // Nieuw: directe toegang tot locator()
+  public locator(selector: string): Locator {
+    return this.page.locator(selector);
+  }
   public async navigate(url: string): Promise<void> {
     await this.page.goto(url);
 
@@ -41,18 +44,11 @@ export class BasePage {
   }
 
   public async switchToNewTab(): Promise<void> {
-    await this.page.context().waitForEvent("page"); //reintialise the page > new tab > page
-
-    //Retrieve all current open pages (tabs)
+    await this.page.context().waitForEvent("page");
     const allPages = await this.page.context().pages();
-
-    //Assign the most recent tab to pageFixture.page
     pageFixture.page = allPages[allPages.length - 1];
-
-    //Bring the newly assigned tab to the front (Make it active)
     await this.page.bringToFront();
 
-    //Ensure the newly assigned tab is also fully maximised
     await this.page.setViewportSize({
       width: config.width,
       height: config.height,

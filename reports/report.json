@@ -4,17 +4,17 @@
     "elements": [
       {
         "description": "",
-        "id": "sharevalue-header-navigation;",
+        "id": "sharevalue-header-navigation;clicking-the-hamburger-icon-reveals-the-navigation-menu",
         "keyword": "Scenario",
-        "line": 8,
-        "name": "",
+        "line": 61,
+        "name": "Clicking the hamburger icon reveals the navigation menu",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1276204500
+              "duration": 1415746415
             }
           },
           {
@@ -27,46 +27,33 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2814566832
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 9,
-            "name": "In the main menu there is a SharValue logo",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:5"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 27494249
+              "duration": 2853857916
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 10,
-            "name": "I click on the logo",
+            "line": 62,
+            "name": "I click on the hamburger menu in the header",
             "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:12"
+              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:57"
             },
             "result": {
               "status": "passed",
-              "duration": 55884541
+              "duration": 83532250
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 11,
-            "name": "The page title is 'Tijdelijk extra IT-experts nodig?'",
+            "line": 63,
+            "name": "I Expect that i can close the menu by pressing the close button",
             "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:24"
+              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:71"
             },
             "result": {
               "status": "passed",
-              "duration": 6655749
+              "duration": 8522030166
             }
           },
           {
@@ -74,318 +61,22 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 225863292
+              "duration": 396443792
             }
           }
         ],
         "tags": [
           {
-            "name": "@sv",
-            "line": 1
-          },
-          {
             "name": "@header",
             "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sharevalue-header-navigation;the-main-menu-is-visable-on-the-page",
-        "keyword": "Scenario Outline",
-        "line": 19,
-        "name": "The main menu is visable on the page",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 737923209
-            }
           },
           {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 5,
-            "name": "I navigate to the ShareValue homepage",
-            "match": {
-              "location": "src/step-definitions/Homepage_Steps.ts:35"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2468675541
-            }
+            "name": "@regression",
+            "line": 1
           },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 14,
-            "name": "I click on the 'Wat we doen' in the header",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:16"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 76314749
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 15,
-            "name": "The page title is 'Wat we doen'",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:24"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 882241291
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 217270875
-            }
-          }
-        ],
-        "tags": [
           {
             "name": "@sv",
-            "line": 1
-          },
-          {
-            "name": "@header",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sharevalue-header-navigation;the-main-menu-is-visable-on-the-page",
-        "keyword": "Scenario Outline",
-        "line": 20,
-        "name": "The main menu is visable on the page",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 769811875
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 5,
-            "name": "I navigate to the ShareValue homepage",
-            "match": {
-              "location": "src/step-definitions/Homepage_Steps.ts:35"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2370271458
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 14,
-            "name": "I click on the 'Kennisbank' in the header",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:16"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 67509083
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 15,
-            "name": "The page title is 'Wat speelt er nu bij ShareValue?'",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:24"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 905739208
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 214625250
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@sv",
-            "line": 1
-          },
-          {
-            "name": "@header",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sharevalue-header-navigation;the-main-menu-is-visable-on-the-page",
-        "keyword": "Scenario Outline",
-        "line": 21,
-        "name": "The main menu is visable on the page",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 708377791
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 5,
-            "name": "I navigate to the ShareValue homepage",
-            "match": {
-              "location": "src/step-definitions/Homepage_Steps.ts:35"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2297419333
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 14,
-            "name": "I click on the 'Word onze collega' in the header",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:16"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 56373666
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 15,
-            "name": "The page title is 'Kom je bij ons werken?'",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:24"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 900402165
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 230966040
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@sv",
-            "line": 1
-          },
-          {
-            "name": "@header",
-            "line": 1
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "description": "",
-        "id": "sharevalue-header-navigation;the-main-menu-is-visable-on-the-page",
-        "keyword": "Scenario Outline",
-        "line": 22,
-        "name": "The main menu is visable on the page",
-        "steps": [
-          {
-            "keyword": "Before",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 712524832
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Given ",
-            "line": 5,
-            "name": "I navigate to the ShareValue homepage",
-            "match": {
-              "location": "src/step-definitions/Homepage_Steps.ts:35"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 2424573042
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 14,
-            "name": "I click on the 'Contact' in the header",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:16"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 63771916
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 15,
-            "name": "The page title is 'Neem contact op'",
-            "match": {
-              "location": "src/step-definitions/components/HeaderComponent_Steps.ts:24"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 4622833
-            }
-          },
-          {
-            "keyword": "After",
-            "hidden": true,
-            "result": {
-              "status": "passed",
-              "duration": 194384458
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@sv",
-            "line": 1
-          },
-          {
-            "name": "@header",
-            "line": 1
+            "line": 60
           }
         ],
         "type": "scenario"
@@ -397,11 +88,11 @@
     "name": "ShareValue Header navigation",
     "tags": [
       {
-        "name": "@sv",
+        "name": "@header",
         "line": 1
       },
       {
-        "name": "@header",
+        "name": "@regression",
         "line": 1
       }
     ],

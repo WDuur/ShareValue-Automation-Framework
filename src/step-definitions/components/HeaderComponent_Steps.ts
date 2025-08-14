@@ -16,7 +16,6 @@ Then("I click on the logo", async function (this: CucumberWorld) {
 When(
   "I click on the {string} in the header",
   async function (this: CucumberWorld, menuItem: string) {
-    console.log(menuItem);
     await this.headerComponent.clickOnMenuItem(menuItem);
   }
 );
@@ -26,5 +25,53 @@ Then(
   async function (this: CucumberWorld, title: string) {
     const headingText = await this.headerComponent.getPageTitle(title);
     await expect(headingText).toBe(title);
+  }
+);
+
+When(
+  "I hover over the {string} menu item",
+  async function (this: CucumberWorld, mainMenu: string) {
+    const menuItem = await this.headerComponent.getMenuItem(mainMenu);
+    await menuItem.waitFor({ state: "visible" });
+    await menuItem.hover();
+  }
+);
+
+Then(
+  "I should see the following submenu items:",
+  async function (this: CucumberWorld, dataTable: any) {
+    const expectedItems = dataTable.hashes();
+
+    for (const { label, url } of expectedItems) {
+      const menuItem = await this.headerComponent.getMenuItemInContainer(
+        "header",
+        label
+      );
+      await expect(menuItem).toBeVisible();
+      await expect(menuItem).toHaveAttribute("href", url);
+      await menuItem.click();
+    }
+  }
+);
+
+When(
+  "I click on the hamburger menu in the header",
+  async function (this: CucumberWorld) {
+    const button = await this.headerComponent.page
+      .getByRole("banner")
+      .locator("role=button");
+    await button.click();
+
+    const slideinMenu = await this.headerComponent.getMenuSlider();
+    await expect(slideinMenu).toBeVisible();
+  }
+);
+
+Then(
+  "I Expect that i can close the menu by pressing the close button",
+  async function (this: CucumberWorld) {
+    await this.headerComponent.page.locator("role=button").first().click();
+    const slideinMenu = await this.headerComponent.getMenuSlider();
+    await expect(slideinMenu).not.toBeVisible();
   }
 );
