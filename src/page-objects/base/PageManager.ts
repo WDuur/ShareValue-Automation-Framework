@@ -5,6 +5,7 @@ import { HomePage } from "../HomePage";
 import { ContactUsPage } from "../ContactUsPage";
 import { LoginPage } from "../LoginPage";
 import { HeaderComponent } from "../components/HeaderComponent";
+import { CookieComponent } from "../components/CookieComponent";
 
 export class PageManager {
   get page(): Page {
@@ -28,5 +29,8 @@ export class PageManager {
   //components
   createHeaderComponent(): HeaderComponent {
     return new HeaderComponent();
+  }
+  createCookieComponent(): CookieComponent {
+    return new CookieComponent();
   }
 }

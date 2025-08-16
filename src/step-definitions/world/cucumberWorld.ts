@@ -5,6 +5,7 @@ import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
 import { LoginPage } from "./../../page-objects/LoginPage";
 import { HeaderComponent } from "../../page-objects/components/HeaderComponent";
+import { CookieComponent } from "../../page-objects/components/CookieComponent";
 
 export class CucumberWorld extends World {
   public pageManager: PageManager;
@@ -14,6 +15,7 @@ export class CucumberWorld extends World {
   public loginPage: LoginPage;
   // components
   public headerComponent: HeaderComponent;
+  public cookieComponent: CookieComponent;
 
   // base URL
   private url?: string;
@@ -34,6 +36,7 @@ export class CucumberWorld extends World {
     this.loginPage = this.pageManager.createLoginPage();
     //components
     this.headerComponent = this.pageManager.createHeaderComponent();
+    this.cookieComponent = this.pageManager.createCookieComponent();
   }
   //setters for url, first name and last name
   setUrl(url: string) {

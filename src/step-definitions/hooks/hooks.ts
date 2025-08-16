@@ -84,6 +84,7 @@ Before(async function () {
     this.loginPage = this.pageManager.createLoginPage();
     //components
     this.headerComponent = this.pageManager.createHeaderComponent();
+    this.CookieComponent = this.pageManager.createCookieComponent();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }
