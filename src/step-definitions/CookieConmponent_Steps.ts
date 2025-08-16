@@ -1,11 +1,7 @@
-import { pageFixture } from "./../hooks/browserContextFixture";
+import { pageFixture } from "./hooks/browserContextFixture";
 import { Given, Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { CucumberWorld } from "../world/cucumberWorld";
-import { CookieComponent } from "../../page-objects/components/CookieComponent";
-import { C } from "@faker-js/faker/dist/airline-CLphikKp";
-
-// const COOKIE_BANNER_SELECTOR = ".cookie-banner";
+import { CucumberWorld } from "./world/cucumberWorld";
 
 When("All cookies are cleared", async () => {
   await pageFixture.page.context().clearCookies();

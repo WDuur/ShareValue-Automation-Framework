@@ -1,15 +1,16 @@
-import { pageFixture } from "./../hooks/browserContextFixture";
+import { pageFixture } from "./hooks/browserContextFixture";
 import { Given, Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { CucumberWorld } from "../world/cucumberWorld";
+import { CucumberWorld } from "./world/cucumberWorld";
 
 Then(
-  "In the main menu there is a SharValue logo",
+  "In the main menu there is a ShareValue logo",
   async function (this: CucumberWorld) {
     const logo = await this.headerComponent.getShareValueLogo();
     await expect(logo).toBeVisible();
   }
 );
+
 Then("I click on the logo", async function (this: CucumberWorld) {
   await this.headerComponent.clickOnMenuItem("ShareValue B.V.");
 });

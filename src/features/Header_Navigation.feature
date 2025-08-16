@@ -1,12 +1,12 @@
-@header @regression @dev
+@header @regression
 Feature:  ShareValue Header navigation
 
     Background: Pre condition
         Given I navigate to the ShareValue homepage
 
-
+    @dev
     Scenario:
-        Then In the main menu there is a SharValue logo
+        Then In the main menu there is a ShareValue logo
         When I click on the logo
         Then The page title is 'Tijdelijk extra IT-experts nodig?'
 
