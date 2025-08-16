@@ -1,3 +1,4 @@
+import { pageFixture } from "./../hooks/browserContextFixture";
 import { Given, Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
 import { CucumberWorld } from "../world/cucumberWorld";
@@ -42,7 +43,7 @@ Then(
   async function (this: CucumberWorld, dataTable: any) {
     const expectedItems = dataTable.hashes();
 
-    for (const { label, url } of expectedItems) {
+    for (const { label, url, pageTitle } of expectedItems) {
       const menuItem = await this.headerComponent.getMenuItemInContainer(
         "header",
         label
@@ -66,6 +67,13 @@ When(
     await expect(slideinMenu).toBeVisible();
   }
 );
+
+Then("I wil have {string} menu header items", async (itemCount: string) => {
+  const submenuLinks = await pageFixture.page.locator(
+    ".desktop-menu-grid a.text-brand-primary"
+  );
+  await expect(submenuLinks).toHaveCount(parseInt(itemCount));
+});
 
 Then(
   "I Expect that i can close the menu by pressing the close button",

@@ -30,7 +30,7 @@ const profiles: ProfileCommands = {
   regression: `${common} --tags @regression`,
   login: `${common} --tags @login`,
   contactus: `${common} --tags @contactus`,
-  sv: `${common} --tags @sv`,
+  dev: `${common} --tags @dev`,
   header: `${common} --tags @header`,
 };
 
@@ -40,7 +40,7 @@ const profile = process.argv[2];
 //construct
 let command = `cucumber-js ${
   profiles[
-    profile as "smoke" | "regression" | "login" | "contactus" | "sv" | "header"
+    profile as "smoke" | "regression" | "login" | "contactus" | "dev" | "header"
   ]
 }`;
 

@@ -16,7 +16,7 @@ export class HeaderComponent extends BasePage {
       name: title,
     });
     const headingText = await pageUniqueElement.textContent({
-      timeout: 1000,
+      timeout: 2000,
     });
     return headingText?.trim() || "";
   }

@@ -9,7 +9,7 @@ Feature:  ShareValue Header navigation
         Then In the main menu there is a SharValue logo
         When I click on the logo
         Then The page title is 'Tijdelijk extra IT-experts nodig?'
-
+    @dev
     Scenario Outline: The main menu is visable on the page
         When I click on the '<menuItem>' in the header
         Then The page title is '<pageTitle>'
@@ -57,7 +57,8 @@ Feature:  ShareValue Header navigation
             | label               | url                  |
             | Zakenvriend van KWF | /zakenvriend-van-kwf |
 
-    @sv
+    @dev
     Scenario: Clicking the hamburger icon reveals the navigation menu
         When I click on the hamburger menu in the header
+        Then I wil have "6" menu header items
         Then I Expect that i can close the menu by pressing the close button

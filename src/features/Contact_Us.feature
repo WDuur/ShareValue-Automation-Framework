@@ -1,4 +1,4 @@
-@regression @contactus
+@contactus
 Feature:  webdriveruniversity contact us page
 
     Background: Pre condition
