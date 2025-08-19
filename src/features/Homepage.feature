@@ -33,3 +33,29 @@ Feature: Homepage
         Then I see the "banner" segment on the homepage
         And The "banner" segment has "ShareValue - De standaard voorbij" as "title"
         And On the "banner" is a cta with a link to "over-ons"
+
+    Scenario: On the homepage there is a segment how ShareValue works
+        Then I see the "work" segment on the homepage
+        And The "work" segment has "Zo werkt ShareValue" as "title"
+        And There are "6" blocks to explain how we "work" with a image, title and paragraph
+
+    Scenario Outline: On the homepage there is an overview with all clients
+        Then I see the "clients" segment on the homepage
+        And The "clients" segment has "Onze opdrachtgevers" as "title"
+        And I should see a paragraph containing the description about the "clients" segment
+        And This "clients" segment has "9" images
+        And There is a client logo for '<clientName>'
+
+        Examples:
+            | clientName                   |
+            | roveg                        |
+            | QSN                          |
+            | Provincie Utrecht            |
+            | Stork                        |
+            | Rovict                       |
+            | NTI                          |
+            | dbf                          |
+            | WWF                          |
+            | Stichting Inlichtingenbureau |
+
+

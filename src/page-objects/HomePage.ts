@@ -16,6 +16,19 @@ const HEADER_MAP: Record<string, string> = {
 
 export class HomePage extends BasePage {
   public clickedBulletIndexes: number[] = [];
+
+  //SegmentLocator - helper
+  public async getSegmentLocator(
+    segmentKey: string,
+    subSelector: string = ""
+  ): Promise<Locator> {
+    const segment = SEGMENT_SELECTORS[segmentKey.toLowerCase()];
+    if (!segment) {
+      throw new Error(`No selector found for segment: ${segmentKey}`);
+    }
+    return this.page.locator(`${segment} ${subSelector}`);
+  }
+
   public get heroSection(): Locator {
     return this.page.locator(HERO_SECTION_SELECTOR);
   }
@@ -63,21 +76,6 @@ export class HomePage extends BasePage {
       .textContent();
     return textContent || "";
   }
-  // public async getSegmentImages(segmentKey: string): Promise<Locator> {
-  //   return this.getSegmentLocator(segmentKey, `img`);
-  // }
-
-  //SegmentLocator - helper
-  public async getSegmentLocator(
-    segmentKey: string,
-    subSelector: string = ""
-  ): Promise<Locator> {
-    const segment = SEGMENT_SELECTORS[segmentKey.toLowerCase()];
-    if (!segment) {
-      throw new Error(`No selector found for segment: ${segmentKey}`);
-    }
-    return this.page.locator(`${segment} ${subSelector}`);
-  }
 
   public async getSegment(segmentKey: string): Promise<Locator> {
     return this.getSegmentLocator(segmentKey);
@@ -104,5 +102,9 @@ export class HomePage extends BasePage {
 
   public async getSegmentUrl(segmentKey: string): Promise<Locator> {
     return this.getSegmentLocator(segmentKey, `a`);
+  }
+
+  public async getContainer(segmentKey: string): Promise<Locator> {
+    return this.getSegmentLocator(segmentKey, `li`);
   }
 }

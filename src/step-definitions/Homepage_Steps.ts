@@ -112,3 +112,37 @@ Then(
     await expect(cta).toHaveAttribute("href", `/${link}`);
   }
 );
+
+Then(
+  "There are {string} blocks to explain how we {string} with a image, title and paragraph",
+  async function (this: App, count: string, segmentKey: string) {
+    const container = await this.homePage.getContainer(segmentKey);
+    const expectedCount = parseInt(count);
+
+    await expect(container).toHaveCount(expectedCount);
+
+    for (let i = 0; i < expectedCount; i++) {
+      const block = container.nth(i);
+      const img = block.locator("img");
+      const title = block.locator("h3");
+      const paragraph = block.locator("p");
+
+      await expect(img, `Missing <img> in block ${i + 1}`).toHaveAttribute(
+        "src",
+        /.+/
+      );
+      await expect(title, `Missing <h3> in block ${i + 1}`).toHaveText(/.+/);
+      await expect(paragraph, `Missing <p> in block ${i + 1}`).toHaveText(/.+/);
+    }
+  }
+);
+
+Then(
+  "There is a client logo for {string}",
+  async function (this: App, customerKey: string) {
+    const image = await this.homePage.page.getByRole("img", {
+      name: customerKey,
+    });
+    await expect(image).toBeVisible();
+  }
+);
