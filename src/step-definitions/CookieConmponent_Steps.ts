@@ -1,30 +1,24 @@
 import { pageFixture } from "./hooks/browserContextFixture";
 import { Given, Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import { CucumberWorld } from "./world/cucumberWorld";
+import { App } from "./world/cucumberWorld";
 
 When("All cookies are cleared", async () => {
   await pageFixture.page.context().clearCookies();
 });
 
-Then(
-  "The cookie banner should be visible",
-  async function (this: CucumberWorld) {
-    const banner = await this.cookieComponent.getCookieBanner();
-    await expect(banner).toBeVisible();
-  }
-);
-Then(
-  "The cookie banner should not be visible",
-  async function (this: CucumberWorld) {
-    const banner = await this.cookieComponent.getCookieBanner();
-    await expect(banner).toBeHidden();
-  }
-);
+Then("The cookie banner should be visible", async function (this: App) {
+  const banner = await this.cookieComponent.getCookieBanner();
+  await expect(banner).toBeVisible();
+});
+Then("The cookie banner should not be visible", async function (this: App) {
+  const banner = await this.cookieComponent.getCookieBanner();
+  await expect(banner).toBeHidden();
+});
 
 When(
   "The user clicks the {string} button",
-  async function (this: CucumberWorld, buttonLabel: string) {
+  async function (this: App, buttonLabel: string) {
     await this.cookieComponent.clickCookieButton(buttonLabel);
   }
 );
@@ -40,7 +34,7 @@ Then(
 
 When(
   "The user clicks the {string} link",
-  async function (this: CucumberWorld, linkText: string) {
+  async function (this: App, linkText: string) {
     const link = await this.cookieComponent.clickCookieLink();
     await expect(link).toHaveText(linkText);
     await link.click();
@@ -57,7 +51,7 @@ Then("The cookie settings should be shown", async () => {
 
 When(
   "The user clicks the checkbox to accept the cookies",
-  async function (this: CucumberWorld) {
+  async function (this: App) {
     const checkbox = await this.cookieComponent.getCookieCheckbox();
     await expect(checkbox).toHaveCount(1);
     await checkbox.check();

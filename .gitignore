@@ -1,9 +1,12 @@
-
 # Playwright
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-reports/**
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
 
+# Ignore reports
+reports/
+
+# Ignore env folder
+env/

@@ -7,7 +7,7 @@ import { LoginPage } from "./../../page-objects/LoginPage";
 import { HeaderComponent } from "../../page-objects/components/HeaderComponent";
 import { CookieComponent } from "../../page-objects/components/CookieComponent";
 
-export class CucumberWorld extends World {
+export class App extends World {
   public pageManager: PageManager;
   public basePage: BasePage;
   public homePage: HomePage;
@@ -25,7 +25,7 @@ export class CucumberWorld extends World {
   private lastName?: string;
   private emailAddress?: string;
 
-  //{ attach, log, parameters }: IWorldOptions are required in the constructor of your CucumberWorld class to
+  //{ attach, log, parameters }: IWorldOptions are required in the constructor of your App class to
   //inherit functionalities from the base World class and to initialize your PageManager and BasePage.
   constructor({ attach, log, link, parameters }: IWorldOptions) {
     super({ attach, log, link, parameters }); //Pass the options to the world constructor
@@ -66,4 +66,4 @@ export class CucumberWorld extends World {
   }
 }
 // Tells cucumber world to use our custom world
-setWorldConstructor(CucumberWorld);
+setWorldConstructor(App);

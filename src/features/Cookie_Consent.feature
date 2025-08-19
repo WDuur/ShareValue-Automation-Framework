@@ -1,4 +1,4 @@
-@regression
+@regression @dev
 Feature: Cookie banner interaction
 
     Background: Pre condition

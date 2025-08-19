@@ -1,8 +1,8 @@
 import { When, Given } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
-import { CucumberWorld } from "./world/cucumberWorld";
+import { App } from "./world/cucumberWorld";
 
-When("I switch to the new browser tab", async function (this: CucumberWorld) {
+When("I switch to the new browser tab", async function (this: App) {
   await this.basePage.switchToNewTab();
 });
 
