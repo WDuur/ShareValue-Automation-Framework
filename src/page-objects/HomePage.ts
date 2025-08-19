@@ -11,7 +11,7 @@ import {
 } from "../utils/selectors";
 
 const HEADER_MAP: Record<string, string> = {
-  GLOBAL_PAGE_SELECTOR: GLOBAL_PAGE_SELECTOR,
+  intro: GLOBAL_PAGE_SELECTOR,
 };
 
 export class HomePage extends BasePage {
@@ -57,12 +57,15 @@ export class HomePage extends BasePage {
     selector: string,
     className: string
   ): Promise<string> {
-    const newSelector = HEADER_MAP[selector];
+    const newSelector = SEGMENT_SELECTORS[selector];
     const textContent = await this.page
       .locator(`${newSelector} ${className}`)
       .textContent();
     return textContent || "";
   }
+  // public async getSegmentImages(segmentKey: string): Promise<Locator> {
+  //   return this.getSegmentLocator(segmentKey, `img`);
+  // }
 
   //SegmentLocator - helper
   public async getSegmentLocator(
@@ -93,5 +96,13 @@ export class HomePage extends BasePage {
     expertise: string
   ): Promise<Locator> {
     return this.getSegmentLocator(segmentKey, `ul li a[title="${expertise}"]`);
+  }
+
+  public async getSegmentImages(segmentKey: string): Promise<Locator> {
+    return this.getSegmentLocator(segmentKey, `img`);
+  }
+
+  public async getSegmentUrl(segmentKey: string): Promise<Locator> {
+    return this.getSegmentLocator(segmentKey, `a`);
   }
 }

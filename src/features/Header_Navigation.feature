@@ -1,4 +1,4 @@
-@header @regression @dev
+@header @regression
 Feature:  ShareValue Header navigation
 
     Background: Pre condition

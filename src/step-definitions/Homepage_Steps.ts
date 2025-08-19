@@ -53,18 +53,15 @@ Then("The corresponding slide is active", async function (this: CucumberWorld) {
 Then(
   "I should see a header with the text {string}",
   async function (this: CucumberWorld, headerText: string) {
-    const header = await this.homePage.getContent("GLOBAL_PAGE_SELECTOR", "h2");
+    const header = await this.homePage.getContent("intro", "h2");
     await expect(header).toBe(headerText);
   }
 );
 
 Then(
-  "I should see a paragraph containing the description about the header",
-  async function (this: CucumberWorld) {
-    const text = await this.homePage.getContent(
-      "GLOBAL_PAGE_SELECTOR",
-      ".content p"
-    );
+  "I should see a paragraph containing the description about the {string} segment",
+  async function (this: CucumberWorld, segmentKey: string) {
+    const text = await this.homePage.getContent(segmentKey, " p");
     await expect(text && text.trim().length).toBeGreaterThan(0);
   }
 );
@@ -106,5 +103,21 @@ Then(
     const expertiseUrl = expertise.replace(/\s+/g, "-").toLowerCase();
     const href = await expertiseBlock.getAttribute("href");
     expect(href).toBe(`/wat-we-doen/${expertiseUrl}`);
+  }
+);
+
+Then(
+  "This {string} segment has {string} images",
+  async function (this: CucumberWorld, segmentKey: string, count: string) {
+    const images = await this.homePage.getSegmentImages(segmentKey);
+    await expect(images).toHaveCount(parseInt(count));
+  }
+);
+
+Then(
+  "On the {string} is a cta with a link to {string}",
+  async function (this: CucumberWorld, segmentKey: string, link: string) {
+    const cta = await this.homePage.getSegmentUrl(segmentKey);
+    await expect(cta).toHaveAttribute("href", `/${link}`);
   }
 );
