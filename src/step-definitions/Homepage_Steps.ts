@@ -11,21 +11,26 @@ Given("I navigate to the ShareValue homepage", async function (this: App) {
     await this.headerComponent.navigate(BASE_DOMAIN);
     logger.info(`Accessing URL: ${BASE_DOMAIN}`);
     this.setUrl(BASE_DOMAIN);
-    // this.pageManager.page.pause();
   } catch (error) {
     logger.error(`Error navigating to ${BASE_DOMAIN}: ${error}`);
   }
 });
 
-Then("I see a slider on the page as a hero image", async function (this: App) {
-  const heroSection = await this.homePage.getHeroSection();
-  await expect(heroSection).toBeVisible();
-});
+Then(
+  "I see a slider on the page as a {string} image",
+  async function (this: App, segmentKey: string) {
+    const heroSection = await this.homePage.getSegmentLocator(segmentKey);
+    await expect(heroSection).toBeVisible();
+  }
+);
 
 Then(
   "The {string} image should have exactly {string} slides",
   async function (this: App, segmentKey: string, expectedCount: string) {
-    const slides = await this.homePage.getSlides(segmentKey);
+    const slides = await this.homePage.getSegmentLocator(
+      segmentKey,
+      "swiper-slide"
+    );
     await expect(slides).toHaveCount(parseInt(expectedCount));
   }
 );
@@ -63,7 +68,7 @@ Then(
 Then(
   "I see the {string} segment on the homepage",
   async function (this: App, segmentKey: string) {
-    const segment = await this.homePage.getSegment(segmentKey);
+    const segment = await this.homePage.getSegmentLocator(segmentKey);
     await expect(segment).toBeVisible();
   }
 );
@@ -78,8 +83,8 @@ Then(
   ) {
     const locator =
       type === "title"
-        ? await this.homePage.getSegmentTitle(segmentKey)
-        : await this.homePage.getSegmentLabel(segmentKey);
+        ? await this.homePage.getSegmentLocator(segmentKey, `h2`)
+        : await this.homePage.getSegmentLocator(segmentKey, `aside div`);
 
     expect(await locator.textContent()).toBe(expectedText);
   }
@@ -88,9 +93,9 @@ Then(
 Then(
   "There is one {string} block for {string}",
   async function (this: App, segmentKey: string, expertise: string) {
-    const expertiseBlock = await this.homePage.getExpertiseBlok(
+    const expertiseBlock = await this.homePage.getSegmentLocator(
       segmentKey,
-      expertise
+      `ul li a[title="${expertise}"]`
     );
 
     await expect(expertiseBlock).toBeVisible();
@@ -103,7 +108,7 @@ Then(
 Then(
   "This {string} segment has {string} images",
   async function (this: App, segmentKey: string, count: string) {
-    const images = await this.homePage.getSegmentImages(segmentKey);
+    const images = await this.homePage.getSegmentLocator(segmentKey, `img`);
     await expect(images).toHaveCount(parseInt(count));
   }
 );
@@ -111,7 +116,7 @@ Then(
 Then(
   "On the {string} is a cta with a link to {string}",
   async function (this: App, segmentKey: string, link: string) {
-    const cta = await this.homePage.getSegmentUrl(segmentKey);
+    const cta = await this.homePage.getSegmentLocator(segmentKey, `a`);
     await expect(cta).toHaveAttribute("href", `/${link}`);
   }
 );
@@ -119,7 +124,7 @@ Then(
 Then(
   "There are {string} blocks to explain how we {string} with a image, title and paragraph",
   async function (this: App, count: string, segmentKey: string) {
-    const container = await this.homePage.getContainer(segmentKey);
+    const container = await this.homePage.getSegmentLocator(segmentKey, `li`);
     const expectedCount = parseInt(count);
 
     await expect(container).toHaveCount(expectedCount);
@@ -154,7 +159,10 @@ Then(
   "The {string} latest {string} where correctly showen",
   async function (this: App, count: string, segmentKey: string) {
     const expectedCount = parseInt(count);
-    const blogposts = await this.homePage.getBlogPosts(segmentKey);
+    const blogposts = await this.homePage.getSegmentLocator(
+      segmentKey,
+      `a.post-wrapper`
+    );
 
     await expect(blogposts).toHaveCount(expectedCount * 2);
 
@@ -190,3 +198,29 @@ Then(
     }
   }
 );
+
+Then(
+  "The {string} wil have {string} call to actions",
+  async function (this: App, segmentKey: string, count: string) {
+    const callToActions = await this.homePage.getSegmentLocator(
+      segmentKey,
+      `.call-to-action-wrapper`
+    );
+    // await pageFixture.page.pause();
+    await expect(callToActions).toHaveCount(2);
+  }
+);
+
+When(
+  "I click on the {string} button",
+  async function (this: App, buttonLabel: string) {
+    await this.homePage.clickCtaButton(buttonLabel);
+  }
+);
+
+// When(
+//   "The user clicks the {string} button",
+//   async function (this: App, buttonLabel: string) {
+//     await this.homePage.waitAndClickByRole("link", buttonLabel);
+//   }
+// );

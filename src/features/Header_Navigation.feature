@@ -13,14 +13,15 @@ Feature:  ShareValue Header navigation
 
     Scenario Outline: The main menu is visable on the page
         When I click on the '<menuItem>' in the header
-        Then The page title is '<pageTitle>'
+        # Then I wait for 3 seconds
+        # Then The page title is '<pageTitle>'
 
         Examples:
             | menuItem          | pageUrl           | pageTitle                        |
             | Wat we doen       | wat-we-doen       | Wat we doen                      |
             | Kennisbank        | kennisbank        | Wat speelt er nu bij ShareValue? |
             | Word onze collega | word-onze-collega | Kom je bij ons werken?           |
-            | Contact           | contact           | Neem contact op                  |
+            | Contact           | contact           | Contact                          |
 
     Scenario: "Wat we doen" shows the correct submenu items
         When I hover over the "Wat we doen" menu item

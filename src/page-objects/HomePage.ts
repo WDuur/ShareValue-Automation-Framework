@@ -33,13 +33,9 @@ export class HomePage extends BasePage {
     return this.page.locator(HERO_SECTION_SELECTOR);
   }
 
-  public async getHeroSection(): Promise<Locator> {
-    return this.page.locator(HERO_SECTION_SELECTOR);
-  }
-  //######
-  public async getSlides(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, SLIDE_SELECTOR);
-  }
+  // public async getHeroSection(): Promise<Locator> {
+  //   return this.page.locator(HERO_SECTION_SELECTOR);
+  // }
 
   public async clickOnSliderBullets(segmentKey: string): Promise<void> {
     // const bullets = this.heroSection.locator(BULLET_SELECTOR);
@@ -77,39 +73,7 @@ export class HomePage extends BasePage {
       .textContent();
     return textContent || "";
   }
-
-  public async getSegment(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey);
-  }
-
-  public async getSegmentTitle(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, " h2");
-  }
-
-  public async getSegmentLabel(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, " aside div");
-  }
-
-  public async getExpertiseBlok(
-    segmentKey: string,
-    expertise: string
-  ): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, `ul li a[title="${expertise}"]`);
-  }
-
-  public async getSegmentImages(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, `img`);
-  }
-
-  public async getSegmentUrl(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, `a`);
-  }
-
-  public async getContainer(segmentKey: string): Promise<Locator> {
-    return this.getSegmentLocator(segmentKey, `li`);
-  }
-  public async getBlogPosts(segmentKey: string): Promise<Locator> {
-    await this.page.pause();
-    return this.getSegmentLocator(segmentKey, `a.post-wrapper`);
+  public async clickCtaButton(menuItem: string): Promise<void> {
+    await this.waitAndClickByRole("link", menuItem);
   }
 }

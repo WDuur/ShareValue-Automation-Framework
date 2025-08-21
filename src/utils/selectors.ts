@@ -16,6 +16,8 @@ export const HOW_WE_WORK_SELECTOR = 'section[__component="global.how-we-work"]';
 export const CUSTOMERS_SELECTOR = 'section[__component="global.customers"]';
 export const QUOTES_SELECTOR = 'section[__component="global.quotes"]';
 export const LAST_POST_SELECTOR = 'section[__component="strapi.latest-posts"]';
+export const CALL_TO_ACTION_SELECTOR =
+  'section[__component="call-to-action.double"]';
 
 export const SEGMENT_SELECTORS: Record<string, string> = {
   intro: GLOBAL_PAGE_SELECTOR,
@@ -28,4 +30,5 @@ export const SEGMENT_SELECTORS: Record<string, string> = {
   clients: CUSTOMERS_SELECTOR,
   quotes: QUOTES_SELECTOR,
   blogposts: LAST_POST_SELECTOR,
+  cta: CALL_TO_ACTION_SELECTOR,
 };

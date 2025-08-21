@@ -26,10 +26,12 @@ export class BasePage {
   }
 
   public async waitAndClickByRole(role: string, name: string): Promise<void> {
-    const element = await this.page.getByRole(role as any, {
-      name: name,
-      exact: true,
-    });
+    const element = await this.page
+      .getByRole(role as any, {
+        name: name,
+        exact: true,
+      })
+      .first();
     await element.click();
   }
 

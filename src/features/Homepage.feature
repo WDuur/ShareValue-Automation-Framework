@@ -1,11 +1,11 @@
-@regression
+@regression @dev
 Feature: Homepage
 
     Background: Pre condition
         Given I navigate to the ShareValue homepage
 
     Scenario: Check homepage hero slider
-        Then I see a slider on the page as a hero image
+        Then I see a slider on the page as a "hero" image
         Then The "hero" image should have exactly "2" slides
         When I click on every bullet at the "hero" images
         Then The corresponding slide is active
@@ -71,3 +71,9 @@ Feature: Homepage
         And The "blogposts" segment has "Onze updates" as "label"
         And The "6" latest "blogposts" where correctly showen
 
+    @dev
+    Scenario: On the homepage is a double call to acton
+        Then I see the "cta" segment on the homepage
+        And The "cta" wil have "2" call to actions
+        Then I click on the "Neem contact met ons op" button
+        Then I click on the "Bekijk onze vacatures" button
