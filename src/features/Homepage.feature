@@ -1,4 +1,4 @@
-@regression @dev
+@regression
 Feature: Homepage
 
     Background: Pre condition
@@ -6,8 +6,8 @@ Feature: Homepage
 
     Scenario: Check homepage hero slider
         Then I see a slider on the page as a hero image
-        Then The hero image should have exactly "2" slides
-        When I click on every bullet at the hero image
+        Then The "hero" image should have exactly "2" slides
+        When I click on every bullet at the "hero" images
         Then The corresponding slide is active
 
     Scenario: On the homepage there is a introduction text
@@ -58,4 +58,16 @@ Feature: Homepage
             | WWF                          |
             | Stichting Inlichtingenbureau |
 
+
+    Scenario: On the homepage there are rotating quotes
+        Then I see the "quotes" segment on the homepage
+        Then The "quotes" image should have exactly "5" slides
+        When I click on every bullet at the "quotes" images
+        Then The corresponding slide is active
+    @dev
+    Scenario: On the homepage are the latest blogposts
+        Then I see the "blogposts" segment on the homepage
+        And The "blogposts" segment has "Wat speelt er bij ShareValue?" as "title"
+        And The "blogposts" segment has "Onze updates" as "label"
+        And The "6" latest "blogposts" where correctly showen
 

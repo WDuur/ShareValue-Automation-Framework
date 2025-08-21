@@ -37,12 +37,13 @@ export class HomePage extends BasePage {
     return this.page.locator(HERO_SECTION_SELECTOR);
   }
   //######
-  public async getHeroSlides(): Promise<Locator> {
-    return this.heroSection.locator(SLIDE_SELECTOR);
+  public async getSlides(segmentKey: string): Promise<Locator> {
+    return this.getSegmentLocator(segmentKey, SLIDE_SELECTOR);
   }
 
-  public async clickOnHeroBullet(): Promise<void> {
-    const bullets = this.heroSection.locator(BULLET_SELECTOR);
+  public async clickOnSliderBullets(segmentKey: string): Promise<void> {
+    // const bullets = this.heroSection.locator(BULLET_SELECTOR);
+    const bullets = await this.getSegmentLocator(segmentKey, BULLET_SELECTOR);
     const bulletCount = await bullets.count();
     const clickedBulletIndexes = [];
 
@@ -106,5 +107,9 @@ export class HomePage extends BasePage {
 
   public async getContainer(segmentKey: string): Promise<Locator> {
     return this.getSegmentLocator(segmentKey, `li`);
+  }
+  public async getBlogPosts(segmentKey: string): Promise<Locator> {
+    await this.page.pause();
+    return this.getSegmentLocator(segmentKey, `a.post-wrapper`);
   }
 }

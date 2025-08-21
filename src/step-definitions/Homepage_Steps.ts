@@ -23,16 +23,19 @@ Then("I see a slider on the page as a hero image", async function (this: App) {
 });
 
 Then(
-  "The hero image should have exactly {string} slides",
-  async function (this: App, expectedCount: string) {
-    const slides = await this.homePage.getHeroSlides();
+  "The {string} image should have exactly {string} slides",
+  async function (this: App, segmentKey: string, expectedCount: string) {
+    const slides = await this.homePage.getSlides(segmentKey);
     await expect(slides).toHaveCount(parseInt(expectedCount));
   }
 );
 
-When("I click on every bullet at the hero image", async function (this: App) {
-  await this.homePage.clickOnHeroBullet();
-});
+When(
+  "I click on every bullet at the {string} images",
+  async function (this: App, segmentKey: string) {
+    await this.homePage.clickOnSliderBullets(segmentKey);
+  }
+);
 
 Then("The corresponding slide is active", async function (this: App) {
   const activeSegments = await this.homePage.getActiveSegments();
@@ -144,5 +147,46 @@ Then(
       name: customerKey,
     });
     await expect(image).toBeVisible();
+  }
+);
+
+Then(
+  "The {string} latest {string} where correctly showen",
+  async function (this: App, count: string, segmentKey: string) {
+    const expectedCount = parseInt(count);
+    const blogposts = await this.homePage.getBlogPosts(segmentKey);
+
+    await expect(blogposts).toHaveCount(expectedCount * 2);
+
+    for (let i = 0; i < expectedCount; i++) {
+      const post = blogposts.nth(i);
+
+      const image = post.locator("img.post-image");
+      await expect(image).toBeVisible();
+
+      const title = post.locator("h5");
+      await expect(title).toBeVisible();
+      await expect(title).not.toHaveText("");
+
+      const label = post.locator(".label-primary");
+      await expect(label).toHaveText(/blog/i);
+
+      const intro = post.locator("p");
+      await expect(intro).toBeVisible();
+      await expect(intro).not.toHaveText("");
+
+      const author = post.locator("img.rounded-full");
+      await expect(author).toBeVisible();
+
+      const dateSpan = post.locator("div.flex.items-center span").nth(1);
+      await expect(dateSpan).toHaveText(/\d{2}-\d{2}-\d{4}/);
+      await pageFixture.page.pause();
+
+      const readingTime = post.locator('span:has-text("minuten lezen")').nth(1);
+      await expect(readingTime).toBeVisible();
+
+      const firstLabel = post.locator(".label").first();
+      await expect(firstLabel).not.toHaveText("");
+    }
   }
 );
