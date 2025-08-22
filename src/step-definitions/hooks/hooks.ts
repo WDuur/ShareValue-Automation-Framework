@@ -12,6 +12,7 @@ import { PageManager } from "../../page-objects/base/PageManager";
 
 //Load env variables from .env file
 import { config as loadEnv } from "dotenv";
+import logger from "../../logger/logger";
 const env = loadEnv({ path: "./env/.env" });
 
 //Create a configuration object for easy access to env variables
@@ -74,7 +75,7 @@ AfterAll(async function () {
 Before(async function () {
   try {
     browserInstance = await initializeBrowserContext(config.browser);
-    console.log(`Browser context initialized for: ${config.browser}`);
+    //console.log(`Browser context initialized for: ${config.browser}`);
     await initializePage();
 
     this.pageManager = new PageManager();
@@ -84,7 +85,8 @@ Before(async function () {
     this.loginPage = this.pageManager.createLoginPage();
     //components
     this.headerComponent = this.pageManager.createHeaderComponent();
-    this.CookieComponent = this.pageManager.createCookieComponent();
+    this.cookieComponent = this.pageManager.createCookieComponent();
+    this.footerComponent = this.pageManager.createFooterComponent();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }
@@ -93,6 +95,8 @@ Before(async function () {
 // After hook: Runs after each scenario
 After(async function ({ pickle, result }) {
   if (result?.status === Status.FAILED) {
+    console.log(`❌ Failed test: ${pickle.name}`);
+
     if (pageFixture.page) {
       const screenshotPath = `./reports/screenshots/${
         pickle.name
@@ -100,12 +104,14 @@ After(async function ({ pickle, result }) {
       const image = await pageFixture.page.screenshot({
         path: screenshotPath,
         type: "png",
-        //timeout: 60000
       });
       await this.attach(image, "image/png");
     } else {
       console.error("pageFixture.page is undefined");
     }
+    logger.error(`Failed test: ${pickle.name}`);
+  } else {
+    console.log(`✅ Successful test: ${pickle.name}`);
   }
 
   if (browserInstance) {

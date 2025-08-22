@@ -9,7 +9,7 @@ import { BASE_DOMAIN } from "../utils/selectors";
 Given("I navigate to the ShareValue homepage", async function (this: App) {
   try {
     await this.headerComponent.navigate(BASE_DOMAIN);
-    logger.info(`Accessing URL: ${BASE_DOMAIN}`);
+    //logger.info(`URL: ${BASE_DOMAIN}`);
     this.setUrl(BASE_DOMAIN);
   } catch (error) {
     logger.error(`Error navigating to ${BASE_DOMAIN}: ${error}`);
@@ -212,15 +212,8 @@ Then(
 );
 
 When(
-  "I click on the {string} button",
+  "I can click on the {string} button",
   async function (this: App, buttonLabel: string) {
     await this.homePage.clickCtaButton(buttonLabel);
   }
 );
-
-// When(
-//   "The user clicks the {string} button",
-//   async function (this: App, buttonLabel: string) {
-//     await this.homePage.waitAndClickByRole("link", buttonLabel);
-//   }
-// );

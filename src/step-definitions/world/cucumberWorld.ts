@@ -6,6 +6,7 @@ import { ContactUsPage } from "../../page-objects/ContactUsPage";
 import { LoginPage } from "./../../page-objects/LoginPage";
 import { HeaderComponent } from "../../page-objects/components/HeaderComponent";
 import { CookieComponent } from "../../page-objects/components/CookieComponent";
+import { FooterComponent } from "../../page-objects/components/FooterComponent";
 
 export class App extends World {
   public pageManager: PageManager;
@@ -16,6 +17,7 @@ export class App extends World {
   // components
   public headerComponent: HeaderComponent;
   public cookieComponent: CookieComponent;
+  public footerComponent: FooterComponent;
 
   // base URL
   private url?: string;
@@ -37,6 +39,7 @@ export class App extends World {
     //components
     this.headerComponent = this.pageManager.createHeaderComponent();
     this.cookieComponent = this.pageManager.createCookieComponent();
+    this.footerComponent = this.pageManager.createFooterComponent();
   }
   //setters for url, first name and last name
   setUrl(url: string) {

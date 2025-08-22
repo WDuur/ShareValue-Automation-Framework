@@ -1,5 +1,8 @@
 import { pageFixture } from "./../../step-definitions/hooks/browserContextFixture";
-import { Page, Locator } from "@playwright/test";
+import { Locator } from "@playwright/test";
+import logger from "../../logger/logger";
+//SegmentLocators
+import { SEGMENT_SELECTORS } from "../../utils/selectors";
 
 //Load env variables from .env file
 import { config as loadEnv } from "dotenv";
@@ -32,6 +35,7 @@ export class BasePage {
         exact: true,
       })
       .first();
+    // logger.info(`Link: ${await element.textContent()}`);
     await element.click();
   }
 
@@ -55,5 +59,17 @@ export class BasePage {
       width: config.width,
       height: config.height,
     });
+  }
+
+  //SegmentLocator - helper
+  public async getSegmentLocator(
+    segmentKey: string,
+    subSelector: string = ""
+  ): Promise<Locator> {
+    const segment = SEGMENT_SELECTORS[segmentKey.toLowerCase()];
+    if (!segment) {
+      throw new Error(`No selector found for segment: ${segmentKey}`);
+    }
+    return this.page.locator(`${segment} ${subSelector}`);
   }
 }

@@ -18,6 +18,7 @@ export const QUOTES_SELECTOR = 'section[__component="global.quotes"]';
 export const LAST_POST_SELECTOR = 'section[__component="strapi.latest-posts"]';
 export const CALL_TO_ACTION_SELECTOR =
   'section[__component="call-to-action.double"]';
+export const GLOBAL_FOOTER_SELECTOR = "footer";
 
 export const SEGMENT_SELECTORS: Record<string, string> = {
   intro: GLOBAL_PAGE_SELECTOR,
@@ -31,4 +32,5 @@ export const SEGMENT_SELECTORS: Record<string, string> = {
   quotes: QUOTES_SELECTOR,
   blogposts: LAST_POST_SELECTOR,
   cta: CALL_TO_ACTION_SELECTOR,
+  footer: GLOBAL_FOOTER_SELECTOR,
 };

@@ -6,6 +6,7 @@ import { ContactUsPage } from "../ContactUsPage";
 import { LoginPage } from "../LoginPage";
 import { HeaderComponent } from "../components/HeaderComponent";
 import { CookieComponent } from "../components/CookieComponent";
+import { FooterComponent } from "../components/FooterComponent";
 
 export class PageManager {
   get page(): Page {
@@ -32,5 +33,9 @@ export class PageManager {
   }
   createCookieComponent(): CookieComponent {
     return new CookieComponent();
+  }
+
+  createFooterComponent(): FooterComponent {
+    return new FooterComponent();
   }
 }

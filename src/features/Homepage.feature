@@ -64,7 +64,7 @@ Feature: Homepage
         Then The "quotes" image should have exactly "5" slides
         When I click on every bullet at the "quotes" images
         Then The corresponding slide is active
-    @dev
+
     Scenario: On the homepage are the latest blogposts
         Then I see the "blogposts" segment on the homepage
         And The "blogposts" segment has "Wat speelt er bij ShareValue?" as "title"
@@ -75,5 +75,5 @@ Feature: Homepage
     Scenario: On the homepage is a double call to acton
         Then I see the "cta" segment on the homepage
         And The "cta" wil have "2" call to actions
-        Then I click on the "Neem contact met ons op" button
-        Then I click on the "Bekijk onze vacatures" button
+        Then I can click on the "Neem contact met ons op" button
+        Then I can click on the "Bekijk onze vacatures" button

@@ -4,7 +4,6 @@ import { Locator } from "@playwright/test";
 import {
   BULLET_SELECTOR,
   SLIDE_SELECTOR,
-  SLIDE_SELECTOR_ACTIVE,
   SEGMENT_SELECTORS,
   HERO_SECTION_SELECTOR,
   GLOBAL_PAGE_SELECTOR,
@@ -17,28 +16,11 @@ const HEADER_MAP: Record<string, string> = {
 export class HomePage extends BasePage {
   public clickedBulletIndexes: number[] = [];
 
-  //SegmentLocator - helper
-  public async getSegmentLocator(
-    segmentKey: string,
-    subSelector: string = ""
-  ): Promise<Locator> {
-    const segment = SEGMENT_SELECTORS[segmentKey.toLowerCase()];
-    if (!segment) {
-      throw new Error(`No selector found for segment: ${segmentKey}`);
-    }
-    return this.page.locator(`${segment} ${subSelector}`);
-  }
-
   public get heroSection(): Locator {
     return this.page.locator(HERO_SECTION_SELECTOR);
   }
 
-  // public async getHeroSection(): Promise<Locator> {
-  //   return this.page.locator(HERO_SECTION_SELECTOR);
-  // }
-
   public async clickOnSliderBullets(segmentKey: string): Promise<void> {
-    // const bullets = this.heroSection.locator(BULLET_SELECTOR);
     const bullets = await this.getSegmentLocator(segmentKey, BULLET_SELECTOR);
     const bulletCount = await bullets.count();
     const clickedBulletIndexes = [];
