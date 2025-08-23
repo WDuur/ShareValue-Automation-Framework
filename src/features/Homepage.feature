@@ -1,11 +1,11 @@
-@regression @dev
+@regression
 Feature: Homepage
 
     Background: Pre condition
         Given I navigate to the ShareValue homepage
 
     Scenario: Check homepage hero slider
-        Then I see a slider on the page as a "hero" image
+        Then I see the "hero" segment on the page
         Then The "hero" image should have exactly "2" slides
         When I click on every bullet at the "hero" images
         Then The corresponding slide is active
@@ -13,6 +13,7 @@ Feature: Homepage
     Scenario: On the homepage there is a introduction text
         Then I should see a header with the text "ShareValue, de standaard voorbij"
         And I should see a paragraph containing the description about the "intro" segment
+
 
     Scenario: On the homepage the ShareValue expertises are visable
         Then I see the "expertise" segment on the homepage
@@ -60,7 +61,7 @@ Feature: Homepage
 
 
     Scenario: On the homepage there are rotating quotes
-        Then I see the "quotes" segment on the homepage
+        Then I see the "quotes" segment on the page
         Then The "quotes" image should have exactly "5" slides
         When I click on every bullet at the "quotes" images
         Then The corresponding slide is active

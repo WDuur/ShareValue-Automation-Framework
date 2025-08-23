@@ -9,7 +9,6 @@ import { BASE_DOMAIN } from "../utils/selectors";
 Given("I navigate to the ShareValue homepage", async function (this: App) {
   try {
     await this.headerComponent.navigate(BASE_DOMAIN);
-    //logger.info(`URL: ${BASE_DOMAIN}`);
     this.setUrl(BASE_DOMAIN);
   } catch (error) {
     logger.error(`Error navigating to ${BASE_DOMAIN}: ${error}`);
@@ -25,31 +24,6 @@ Then(
 );
 
 Then(
-  "The {string} image should have exactly {string} slides",
-  async function (this: App, segmentKey: string, expectedCount: string) {
-    const slides = await this.homePage.getSegmentLocator(
-      segmentKey,
-      "swiper-slide"
-    );
-    await expect(slides).toHaveCount(parseInt(expectedCount));
-  }
-);
-
-When(
-  "I click on every bullet at the {string} images",
-  async function (this: App, segmentKey: string) {
-    await this.homePage.clickOnSliderBullets(segmentKey);
-  }
-);
-
-Then("The corresponding slide is active", async function (this: App) {
-  const activeSegments = await this.homePage.getActiveSegments();
-  for (const activeSegment of activeSegments) {
-    await expect(activeSegment).toHaveClass(/swiper-slide-active/);
-  }
-});
-
-Then(
   "I should see a header with the text {string}",
   async function (this: App, headerText: string) {
     const header = await this.homePage.getContent("intro", "h2");
@@ -62,14 +36,6 @@ Then(
   async function (this: App, segmentKey: string) {
     const text = await this.homePage.getContent(segmentKey, " p");
     await expect(text && text.trim().length).toBeGreaterThan(0);
-  }
-);
-
-Then(
-  "I see the {string} segment on the homepage",
-  async function (this: App, segmentKey: string) {
-    const segment = await this.homePage.getSegmentLocator(segmentKey);
-    await expect(segment).toBeVisible();
   }
 );
 
@@ -89,7 +55,13 @@ Then(
     expect(await locator.textContent()).toBe(expectedText);
   }
 );
-
+Then(
+  "I see the {string} segment on the homepage",
+  async function (this: App, segmentKey: string) {
+    const segment = await this.homePage.getSegmentLocator(segmentKey);
+    await expect(segment).toBeVisible();
+  }
+);
 Then(
   "There is one {string} block for {string}",
   async function (this: App, segmentKey: string, expertise: string) {
@@ -196,24 +168,5 @@ Then(
       const firstLabel = post.locator(".label").first();
       await expect(firstLabel).not.toHaveText("");
     }
-  }
-);
-
-Then(
-  "The {string} wil have {string} call to actions",
-  async function (this: App, segmentKey: string, count: string) {
-    const callToActions = await this.homePage.getSegmentLocator(
-      segmentKey,
-      `.call-to-action-wrapper`
-    );
-    // await pageFixture.page.pause();
-    await expect(callToActions).toHaveCount(2);
-  }
-);
-
-When(
-  "I can click on the {string} button",
-  async function (this: App, buttonLabel: string) {
-    await this.homePage.clickCtaButton(buttonLabel);
   }
 );

@@ -18,14 +18,23 @@ export class BasePage {
   get page() {
     return pageFixture.page;
   }
+
   // Nieuw: directe toegang tot locator()
   public locator(selector: string): Locator {
     return this.page.locator(selector);
   }
   public async navigate(url: string): Promise<void> {
-    await this.page.goto(url);
+    const response = await this.page.goto(url);
 
-    //await this.page.pause();
+    if (!response) {
+      throw new Error("No response received during navigation");
+    }
+
+    if (response.status() === 404) {
+      throw new Error(`Test failed: 404 Not Found at ${url}`);
+    }
+
+    await this.page.pause();
   }
 
   public async waitAndClickByRole(role: string, name: string): Promise<void> {
@@ -71,5 +80,19 @@ export class BasePage {
       throw new Error(`No selector found for segment: ${segmentKey}`);
     }
     return this.page.locator(`${segment} ${subSelector}`);
+  }
+
+  public async getContent(
+    selector: string,
+    className: string
+  ): Promise<string> {
+    const newSelector = SEGMENT_SELECTORS[selector];
+    const textContent = await this.page
+      .locator(`${newSelector} ${className}`)
+      .textContent();
+    return textContent || "";
+  }
+  public async clickCtaButton(menuItem: string): Promise<void> {
+    await this.waitAndClickByRole("link", menuItem);
   }
 }

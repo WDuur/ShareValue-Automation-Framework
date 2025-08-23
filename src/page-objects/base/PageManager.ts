@@ -7,6 +7,8 @@ import { LoginPage } from "../LoginPage";
 import { HeaderComponent } from "../components/HeaderComponent";
 import { CookieComponent } from "../components/CookieComponent";
 import { FooterComponent } from "../components/FooterComponent";
+import { CarouselComponent } from "../components/CarouselComponent";
+import { CTAComponent } from "../components/CTAComponent";
 
 export class PageManager {
   get page(): Page {
@@ -37,5 +39,13 @@ export class PageManager {
 
   createFooterComponent(): FooterComponent {
     return new FooterComponent();
+  }
+
+  createCarouselComponent(): CarouselComponent {
+    return new CarouselComponent();
+  }
+
+  createCTAComponent(): CTAComponent {
+    return new CTAComponent();
   }
 }

@@ -15,6 +15,8 @@ export const HERO_SECONDARY_SELECTOR = 'section[__component="hero.secondary"]';
 export const HOW_WE_WORK_SELECTOR = 'section[__component="global.how-we-work"]';
 export const CUSTOMERS_SELECTOR = 'section[__component="global.customers"]';
 export const QUOTES_SELECTOR = 'section[__component="global.quotes"]';
+export const PERSONS_CAROUSEL_SELECTOR =
+  'section[__component="global.person-carousel"]';
 export const LAST_POST_SELECTOR = 'section[__component="strapi.latest-posts"]';
 export const CALL_TO_ACTION_SELECTOR =
   'section[__component="call-to-action.double"]';
@@ -33,4 +35,5 @@ export const SEGMENT_SELECTORS: Record<string, string> = {
   blogposts: LAST_POST_SELECTOR,
   cta: CALL_TO_ACTION_SELECTOR,
   footer: GLOBAL_FOOTER_SELECTOR,
+  persons: PERSONS_CAROUSEL_SELECTOR,
 };
