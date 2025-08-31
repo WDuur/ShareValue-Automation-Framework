@@ -8,6 +8,14 @@ Then("I see a hero image on the page as a hero", async function (this: App) {
   await expect(heroSection).toBeVisible();
 });
 
+Then(
+  "I see a default hero image on the page as a hero",
+  async function (this: App) {
+    const heroSection = await this.basePage.getSegmentLocator("defaulthero");
+    await expect(heroSection).toBeVisible();
+  }
+);
+
 Then("The hero has a title {string}", async function (title: string) {
   const heroTitle = await pageFixture.page.getByRole("heading", {
     name: title,

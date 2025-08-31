@@ -5,6 +5,7 @@ import { App } from "./world/cucumberWorld";
 import { expect } from "@playwright/test";
 
 const URL = "https://sharevalue.nl/wat-we-doen";
+const URL_AZURE = "https://sharevalue.nl/wat-we-doen/azure";
 
 Given("I navigate to the wat we doen page", async function (this: App) {
   try {

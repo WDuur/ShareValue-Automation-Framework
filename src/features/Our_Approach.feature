@@ -32,8 +32,8 @@ Feature: Wat we doen page
         Then I see the "singlecta" segment on the page
         And The "singlecta" wil have "1" call to actions
         Then I can click on the "Neem contact met ons op" button
-    @dev
-    Scenario: On our approuch there is a contact persons carousel
+
+    Scenario: On our approach there is a contact persons carousel
         Then I see the "person" segment on the page
         Then The "person" contact segment has a title "Heb je vragen?"
         Then On the "person" segment there is contact with the name "Ricardo Sinke"

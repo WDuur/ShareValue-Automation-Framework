@@ -13,6 +13,7 @@ export const EXPERTISE_BLOCK_SELECTOR =
   'section[__component="strapi.expertises-block"]';
 export const PARTNER_SELECTOR = 'section[__component="global.partner"]';
 export const HERO_SECONDARY_SELECTOR = 'section[__component="hero.secondary"]';
+export const DEFAULT_HERO_IMAGE_SELECTOR = ".hero-wrapper";
 export const HOW_WE_WORK_SELECTOR = 'section[__component="global.how-we-work"]';
 export const CUSTOMERS_SELECTOR = 'section[__component="global.customers"]';
 export const QUOTES_SELECTOR = 'section[__component="global.quotes"]';
@@ -30,6 +31,7 @@ export const GLOBAL_ALTERNATING_SELECTOR =
 export const SEGMENT_SELECTORS: Record<string, string> = {
   intro: GLOBAL_PAGE_SELECTOR,
   heroimage: HERO_IMAGE_SELECTOR,
+  defaulthero: DEFAULT_HERO_IMAGE_SELECTOR,
   expertise: EXPERTISE_BLOCK_SELECTOR,
   partner: PARTNER_SELECTOR,
   hero: HERO_SECTION_SELECTOR,

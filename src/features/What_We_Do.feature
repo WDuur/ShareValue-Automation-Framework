@@ -29,7 +29,7 @@ Feature: Wat we doen page
         Then The "persons" image should have exactly "2" slides
         When I click on every bullet at the "persons" images
         Then The corresponding slide is active
-    @dev
+
     Scenario: On the homeWhat we do page is a double call to acton
         Then I see the "dubblecta" segment on the homepage
         And The "dubblecta" wil have "2" call to actions

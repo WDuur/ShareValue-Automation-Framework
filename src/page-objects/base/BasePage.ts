@@ -82,6 +82,13 @@ export class BasePage {
     return this.page.locator(`${segment} ${subSelector}`);
   }
 
+  public async getBaseLocator(selector: string): Promise<Locator> {
+    if (!selector) {
+      throw new Error(`No selector found for segment: ${selector}`);
+    }
+    return this.page.locator(`${selector}`);
+  }
+
   public async getContent(
     selector: string,
     className: string,
