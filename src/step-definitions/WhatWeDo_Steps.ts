@@ -16,20 +16,6 @@ Given("I navigate to the wat we doen page", async function (this: App) {
   }
 });
 
-Then("I see a image on the page as a hero", async function (this: App) {
-  const heroSection = await pageFixture.page.getByRole("img", {
-    name: "Hoofdfoto Wat we doen",
-  });
-  await expect(heroSection).toBeVisible();
-});
-
-Then("The hero has a title {string}", async function (title: string) {
-  const heroTitle = await pageFixture.page.getByRole("heading", {
-    name: title,
-  });
-  await expect(heroTitle).toBeVisible();
-});
-
 const headerMapping: Record<string, { section: string; index: number }> = {
   first: { section: "intro", index: 0 },
   second: { section: "intro", index: 1 },

@@ -9,6 +9,7 @@ import { CookieComponent } from "../../page-objects/components/CookieComponent";
 import { FooterComponent } from "../../page-objects/components/FooterComponent";
 import { CarouselComponent } from "../../page-objects/components/CarouselComponent";
 import { CTAComponent } from "../../page-objects/components/CTAComponent";
+import { HeroComponent } from "../../page-objects/components/HeroComponent";
 
 export class App extends World {
   public pageManager: PageManager;
@@ -22,6 +23,7 @@ export class App extends World {
   public footerComponent: FooterComponent;
   public carouselComponent: CarouselComponent;
   public ctaComponent: CTAComponent;
+  public heroComponent: HeroComponent;
 
   // base URL
   private url?: string;
@@ -46,6 +48,7 @@ export class App extends World {
     this.footerComponent = this.pageManager.createFooterComponent();
     this.carouselComponent = this.pageManager.createCarouselComponent();
     this.ctaComponent = this.pageManager.createCTAComponent();
+    this.heroComponent = this.pageManager.createHeroComponent();
   }
   //setters for url, first name and last name
   setUrl(url: string) {

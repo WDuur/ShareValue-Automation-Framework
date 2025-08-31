@@ -84,11 +84,13 @@ export class BasePage {
 
   public async getContent(
     selector: string,
-    className: string
+    className: string,
+    order: number = 1
   ): Promise<string> {
     const newSelector = SEGMENT_SELECTORS[selector];
     const textContent = await this.page
       .locator(`${newSelector} ${className}`)
+      .nth(order - 1)
       .textContent();
     return textContent || "";
   }

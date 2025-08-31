@@ -1,11 +1,11 @@
-@regression  @dev
+@regression
 Feature: Wat we doen page
 
     Background: Pre condition
         Given I navigate to the wat we doen page
 
     Scenario: The is a Hero on this page
-        Then I see a image on the page as a hero
+        Then I see a hero image on the page as a hero
         And The hero has a title "Wat we doen"
 
     Scenario: On the what we do page there is a introduction text

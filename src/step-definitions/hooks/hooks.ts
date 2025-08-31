@@ -89,6 +89,7 @@ Before(async function () {
     this.footerComponent = this.pageManager.createFooterComponent();
     this.carouselComponent = this.pageManager.createCarouselComponent();
     this.ctaComponent = this.pageManager.createCTAComponent();
+    this.heroComponent = this.pageManager.createHeroComponent();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }

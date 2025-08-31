@@ -9,6 +9,7 @@ import { CookieComponent } from "../components/CookieComponent";
 import { FooterComponent } from "../components/FooterComponent";
 import { CarouselComponent } from "../components/CarouselComponent";
 import { CTAComponent } from "../components/CTAComponent";
+import { HeroComponent } from "../components/HeroComponent";
 
 export class PageManager {
   get page(): Page {
@@ -47,5 +48,9 @@ export class PageManager {
 
   createCTAComponent(): CTAComponent {
     return new CTAComponent();
+  }
+
+  createHeroComponent(): HeroComponent {
+    return new HeroComponent();
   }
 }
