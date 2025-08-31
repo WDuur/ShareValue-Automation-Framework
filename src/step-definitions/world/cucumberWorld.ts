@@ -10,6 +10,7 @@ import { FooterComponent } from "../../page-objects/components/FooterComponent";
 import { CarouselComponent } from "../../page-objects/components/CarouselComponent";
 import { CTAComponent } from "../../page-objects/components/CTAComponent";
 import { HeroComponent } from "../../page-objects/components/HeroComponent";
+import { ContentBlockComponent } from "../../page-objects/components/ContentBlockComponent";
 
 export class App extends World {
   public pageManager: PageManager;
@@ -24,6 +25,7 @@ export class App extends World {
   public carouselComponent: CarouselComponent;
   public ctaComponent: CTAComponent;
   public heroComponent: HeroComponent;
+  public contentBlockComponent: ContentBlockComponent;
 
   // base URL
   private url?: string;
@@ -49,6 +51,7 @@ export class App extends World {
     this.carouselComponent = this.pageManager.createCarouselComponent();
     this.ctaComponent = this.pageManager.createCTAComponent();
     this.heroComponent = this.pageManager.createHeroComponent();
+    this.contentBlockComponent = this.pageManager.createContentBlockComponent();
   }
   //setters for url, first name and last name
   setUrl(url: string) {

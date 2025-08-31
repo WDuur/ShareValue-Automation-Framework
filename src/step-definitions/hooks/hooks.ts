@@ -1,3 +1,4 @@
+import { ContentBlockComponent } from "./../../page-objects/components/ContentBlockComponent";
 import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import {
   Browser,
@@ -90,6 +91,7 @@ Before(async function () {
     this.carouselComponent = this.pageManager.createCarouselComponent();
     this.ctaComponent = this.pageManager.createCTAComponent();
     this.heroComponent = this.pageManager.createHeroComponent();
+    this.ContentBlockComponent = this.pageManager.createContentBlockComponent();
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }

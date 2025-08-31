@@ -10,6 +10,7 @@ import { FooterComponent } from "../components/FooterComponent";
 import { CarouselComponent } from "../components/CarouselComponent";
 import { CTAComponent } from "../components/CTAComponent";
 import { HeroComponent } from "../components/HeroComponent";
+import { ContentBlockComponent } from "../components/ContentBlockComponent";
 
 export class PageManager {
   get page(): Page {
@@ -52,5 +53,9 @@ export class PageManager {
 
   createHeroComponent(): HeroComponent {
     return new HeroComponent();
+  }
+
+  createContentBlockComponent(): ContentBlockComponent {
+    return new ContentBlockComponent();
   }
 }

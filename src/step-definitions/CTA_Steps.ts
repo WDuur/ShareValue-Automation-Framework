@@ -9,7 +9,8 @@ Then(
       segmentKey,
       `.call-to-action-wrapper`
     );
-    await expect(callToActions).toHaveCount(2);
+
+    await expect(callToActions).toHaveCount(parseInt(count));
   }
 );
 

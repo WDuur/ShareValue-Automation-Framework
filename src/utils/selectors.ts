@@ -19,7 +19,9 @@ export const QUOTES_SELECTOR = 'section[__component="global.quotes"]';
 export const PERSONS_CAROUSEL_SELECTOR =
   'section[__component="global.person-carousel"]';
 export const LAST_POST_SELECTOR = 'section[__component="strapi.latest-posts"]';
-export const CALL_TO_ACTION_SELECTOR =
+export const SINGLE_CTA_SELECTOR =
+  'section[__component="call-to-action.single"]';
+export const DUBBLE_CTA_SELECTOR =
   'section[__component="call-to-action.double"]';
 export const GLOBAL_FOOTER_SELECTOR = "footer";
 export const GLOBAL_ALTERNATING_SELECTOR =
@@ -37,8 +39,10 @@ export const SEGMENT_SELECTORS: Record<string, string> = {
   clients: CUSTOMERS_SELECTOR,
   quotes: QUOTES_SELECTOR,
   blogposts: LAST_POST_SELECTOR,
-  cta: CALL_TO_ACTION_SELECTOR,
+  dubblecta: DUBBLE_CTA_SELECTOR,
+  singlecta: SINGLE_CTA_SELECTOR,
   footer: GLOBAL_FOOTER_SELECTOR,
+  person: PERSONS_CAROUSEL_SELECTOR,
   persons: PERSONS_CAROUSEL_SELECTOR,
   contentblok: GLOBAL_ALTERNATING_SELECTOR,
 };

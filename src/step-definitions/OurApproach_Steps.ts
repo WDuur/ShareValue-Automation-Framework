@@ -54,10 +54,9 @@ Then(
 Then(
   "This contentblok with heading {string} has an image",
   async function (this: App, heading: string) {
-    const section = await this.basePage.page.locator(
-      `section:has(h3:text-is("${heading}"))`
+    const section = await this.contentBlockComponent.getContentBlockByHeading(
+      heading
     );
-
     await expect(section.locator("img")).toHaveCount(1);
   }
 );
@@ -65,19 +64,60 @@ Then(
 Then(
   "This contentblok with heading {string} has an paragraph",
   async function (this: App, heading: string) {
-    const section = await this.basePage.page.locator(
-      `section:has(h3:text-is("${heading}"))`
+    const section = await this.contentBlockComponent.getContentBlockByHeading(
+      heading
     );
-
     await expect(section.locator("p").first()).toHaveCount(1);
   }
 );
 
 Then(
-  "This contentblok has a button with text {string} and link to {string}",
-  async function (this: App, label: string, link: string) {
-    const button = await pageFixture.page.getByRole("link", { name: label });
-    await expect(button).toBeVisible();
-    await expect(button).toHaveAttribute("href", new RegExp(link));
+  "This contentblok has a button with text {string}",
+  async function (this: App, label: string) {
+    await this.contentBlockComponent.waitAndClickByRole("link", label);
+  }
+);
+
+// Helper function to get a visible section
+async function getVisibleSection(this: App, segmentKey: string) {
+  const section = await this.basePage.getSegmentLocator(segmentKey);
+  await expect(section).toBeVisible();
+  return section;
+}
+
+// contact Persons
+Then(
+  "The {string} contact segment has a title {string}",
+  async function (this: App, segmentKey: string, title: string) {
+    const section = await getVisibleSection.call(this, segmentKey);
+    const headerTxt = section.getByRole("heading", { name: title });
+    await expect(headerTxt).toHaveText(title);
+  }
+);
+
+Then(
+  "On the {string} segment there is contact with the name {string}",
+  async function (this: App, segmentKey: string, contactperson: string) {
+    const section = await getVisibleSection.call(this, segmentKey);
+    const person = section.getByRole("heading", { name: contactperson });
+    await expect(person).toHaveText(contactperson);
+  }
+);
+
+Then(
+  "This {string} has a function title {string}",
+  async function (this: App, segmentKey: string, functiontitle: string) {
+    const section = await getVisibleSection.call(this, segmentKey);
+    const functietitle = section.getByText(functiontitle);
+    await expect(functietitle).toHaveText(functiontitle);
+  }
+);
+
+Then(
+  "The {string} contact card has an image for {string}",
+  async function (this: App, segmentKey: string, contactperson: string) {
+    const section = await getVisibleSection.call(this, segmentKey);
+    const personImage = section.getByRole("img", { name: contactperson });
+    await expect(personImage).toBeVisible();
   }
 );

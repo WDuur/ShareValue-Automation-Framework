@@ -44,7 +44,7 @@ export class BasePage {
         exact: true,
       })
       .first();
-    // logger.info(`Link: ${await element.textContent()}`);
+    logger.info(`Link: ${await element.textContent()}`);
     await element.click();
   }
 
