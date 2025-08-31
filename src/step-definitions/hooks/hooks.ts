@@ -1,4 +1,4 @@
-import { ContentBlockComponent } from "./../../page-objects/components/ContentBlockComponent";
+import { initializers } from "./initializers";
 import { After, AfterAll, Before, BeforeAll, Status } from "@cucumber/cucumber";
 import {
   Browser,
@@ -76,22 +76,13 @@ AfterAll(async function () {
 Before(async function () {
   try {
     browserInstance = await initializeBrowserContext(config.browser);
-    //console.log(`Browser context initialized for: ${config.browser}`);
     await initializePage();
 
     this.pageManager = new PageManager();
-    this.basePage = this.pageManager.createBasePage();
-    this.homePage = this.pageManager.createHomePage();
-    this.contactUsPage = this.pageManager.createContactUsPage();
-    this.loginPage = this.pageManager.createLoginPage();
-    //components
-    this.headerComponent = this.pageManager.createHeaderComponent();
-    this.cookieComponent = this.pageManager.createCookieComponent();
-    this.footerComponent = this.pageManager.createFooterComponent();
-    this.carouselComponent = this.pageManager.createCarouselComponent();
-    this.ctaComponent = this.pageManager.createCTAComponent();
-    this.heroComponent = this.pageManager.createHeroComponent();
-    this.ContentBlockComponent = this.pageManager.createContentBlockComponent();
+
+    for (const [prop, factory] of initializers) {
+      this[prop] = factory.call(this.pageManager);
+    }
   } catch (error) {
     console.error("Browser context initialization failed:", error);
   }
