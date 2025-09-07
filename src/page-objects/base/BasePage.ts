@@ -3,6 +3,7 @@ import { Locator } from "@playwright/test";
 import logger from "../../logger/logger";
 //SegmentLocators
 import { SEGMENT_SELECTORS } from "../../utils/selectors";
+import { getFullUrl } from "../../utils/urlSelector";
 
 //Load env variables from .env file
 import { config as loadEnv } from "dotenv";
@@ -24,7 +25,7 @@ export class BasePage {
     return this.page.locator(selector);
   }
   public async navigate(url: string): Promise<void> {
-    const response = await this.page.goto(url);
+    const response = await this.page.goto(getFullUrl(url));
 
     if (!response) {
       throw new Error("No response received during navigation");
@@ -34,7 +35,7 @@ export class BasePage {
       throw new Error(`Test failed: 404 Not Found at ${url}`);
     }
 
-    await this.page.pause();
+    //await this.page.pause();
   }
 
   public async waitAndClickByRole(role: string, name: string): Promise<void> {

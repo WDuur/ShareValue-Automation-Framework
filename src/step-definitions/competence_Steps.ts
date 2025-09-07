@@ -10,12 +10,10 @@ Given(
   "I navigate to the {string} competence page",
   async function (this: App, expertise: string) {
     try {
-      await this.basePage.navigate(`${URL}/${expertise.toLowerCase()}`);
-      logger.info(`Navigating to ${URL}/${expertise}`);
-      this.setUrl(`${URL}/${expertise.toLowerCase()}`);
+      await this.basePage.navigate(expertise);
     } catch (error) {
-      logger.error(`Error navigating to ${URL}/${expertise}: ${error}`);
-      throw new Error(`Failed to navigate to  ${URL}/${expertise}`);
+      logger.error(`Error navigating to ${expertise}: ${error}`);
+      throw new Error(`Failed to navigate to  ${expertise}`);
     }
   }
 );

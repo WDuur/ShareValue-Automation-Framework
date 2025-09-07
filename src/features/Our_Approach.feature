@@ -2,7 +2,7 @@
 Feature: Wat we doen page
 
     Background: Pre condition
-        Given I navigate to the our approach page
+        Given I navigate to the our "approach" page
 
     Scenario: The is a Hero on this page
         Then I see a hero image on the page as a hero

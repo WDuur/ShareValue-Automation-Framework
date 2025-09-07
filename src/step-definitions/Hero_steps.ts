@@ -17,8 +17,10 @@ Then(
 );
 
 Then("The hero has a title {string}", async function (title: string) {
-  const heroTitle = await pageFixture.page.getByRole("heading", {
-    name: title,
-  });
+  const heroTitle = await pageFixture.page
+    .getByRole("heading", {
+      name: title,
+    })
+    .first();
   await expect(heroTitle).toBeVisible();
 });

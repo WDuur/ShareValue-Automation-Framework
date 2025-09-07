@@ -5,17 +5,17 @@ import { App } from "./world/cucumberWorld";
 import { expect } from "@playwright/test";
 import { base } from "@faker-js/faker/.";
 
-const URL = "https://www.sharevalue.nl/onze-aanpak";
-
-Given("I navigate to the our approach page", async function (this: App) {
-  try {
-    await this.basePage.navigate(URL);
-    this.setUrl(URL);
-  } catch (error) {
-    logger.error(`Error navigating to ${URL}: ${error}`);
-    throw new Error(`Failed to navigate to ${URL}`);
+Given(
+  "I navigate to the our {string} page",
+  async function (this: App, page: string) {
+    try {
+      await this.basePage.navigate(page);
+    } catch (error) {
+      logger.error(`Error navigating to ${page}: ${error}`);
+      throw new Error(`Failed to navigate to ${page}`);
+    }
   }
-});
+);
 
 Then(
   "I should see a paragraph containing the description about the {string}",
@@ -119,5 +119,19 @@ Then(
     const section = await getVisibleSection.call(this, segmentKey);
     const personImage = section.getByRole("img", { name: contactperson });
     await expect(personImage).toBeVisible();
+  }
+);
+
+Then(
+  "I should see an approach introduction paragraph",
+  async function (this: App) {
+    const article = (await this.basePage.getSegmentLocator("global")).first();
+    const articleHeader = article.locator("h2").first();
+    await expect(articleHeader).toBeVisible();
+    await expect(articleHeader).not.toBeEmpty();
+
+    const introParagraph = article.locator("p").first();
+    await expect(introParagraph).toBeVisible();
+    await expect(introParagraph).not.toBeEmpty();
   }
 );

@@ -72,7 +72,7 @@ Feature: Homepage
         And The "blogposts" segment has "Onze updates" as "label"
         And The "6" latest "blogposts" where correctly showen
 
-    @dev
+
     Scenario: On the homepage is a double call to acton
         Then I see the "dubblecta" segment on the homepage
         And The "dubblecta" wil have "2" call to actions
